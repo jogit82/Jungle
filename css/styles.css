@@ -1,0 +1,54 @@
+body {
+	background-color: grey;
+}
+
+
+.test {
+	background-color: white;
+}
+
+#mainContent {
+	margin-left: 40px;
+}
+
+#gameBoard {
+	width: 450px;
+}
+
+.square {
+	background-color: white;
+	display: inline-block;
+	line-height: 60px;
+	text-align: center;
+	height: 60px;
+	width: 60px;
+}
+
+.rows .square[player='1'] {
+	background-color: lavender;
+}
+
+.rows .square[player='2'] {
+	background-color: cyan;
+}
+
+.rows .square[river] {
+	background-color: lightblue;
+}
+
+.rows .square[den] {
+	background-color: red;
+}
+
+.rows .square[trap] {
+	background-color: yellow;
+}
+
+.rows .square.squareSelected {
+	background-color: black;
+	color: white;
+}
+
+#gameStats {
+	background-color: grey;
+}
