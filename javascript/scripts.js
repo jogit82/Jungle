@@ -147,7 +147,6 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
-				 player: 1,
 				 html: 'trap'
 				 });
 			}
@@ -156,7 +155,6 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
-				 player: 1,
 				 html: 'trap'
 				 });
 			}
@@ -165,7 +163,6 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
-				 player: 1,
 				 html: 'trap'
 				 });
 			}
@@ -174,7 +171,6 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
-				 player: 2,
 				 html: 'trap'
 				 });
 			}
@@ -183,7 +179,6 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
-				 player: 2,
 				 html: 'trap'
 				 });
 			}
@@ -192,7 +187,6 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
-				 player: 2,
 				 html: 'trap'
 				 });
 			}
@@ -364,50 +358,85 @@ $(document).ready(function(){
 
 var clicked = false;
 function playerMove() {
-	// if (!clicked) {
-	// 	$originalClick = $(this);
-	// }
+	var currentPlayer;
+	var nextPlayer;
 
+	//Choosing a piece to move from
 	if (!clicked && $(this).attr('rank')) {
 		$originalClick = $(this);
-
-
-		// console.log($('.square'));
-		// if ($('.square[den]') && $('.square[rank]')) {
-		// 	console.log($('.square[rank]') + 'nobody wins');
-		// }
-		// $(this).addClass('squareSelected');
+		$(this).addClass('squareSelected');
 		$pieceRank = $(this).attr('rank');
 		$piecePlayer = $(this).attr('player');
 		$pieceClass = $(this).attr('class');
 		$(this).removeAttr('player');
 		$(this).removeAttr('rank');
-		//$(this).removeClass('squareSelected');
+		console.log('Current player: '+$piecePlayer);
 		return clicked = true;
 	}
+
+	//Choosing a destination piece to move to
 	else if (clicked) {
-		//rat vs elephant
+		//Special scenario: rat(1) vs elephant(8)
 		if ($pieceRank === '1' && $(this).attr('rank') === '8') {
+			nextPlayer = $(this).attr('player');
+			$(this).text($pieceRank);
 			$originalClick.html('&nbsp;');
 			$(this).attr('rank', $pieceRank);
 			$(this).attr('player', $piecePlayer);
-			console.log('1 beats 8!');
-			//$(this).attr('class',$pieceClass);
+			$originalClick.removeClass('squareSelected');
+			console.log('Next player: '+nextPlayer);
 			clicked = false;
 		}
-		//Compare and set destination piece with new values
-		else if ($pieceRank > $(this).attr('rank') || !$(this).attr('rank')) {
+
+		//Higher rank piece beating lower rank piece
+		else if ($pieceRank => $(this).attr('rank') && $(this).attr('rank')) {
+			nextPlayer = $(this).attr('player');
 			$(this).text($pieceRank);
 			$originalClick.html('&nbsp;');
 			$(this).attr('rank', $pieceRank);
 			$(this).attr('player',$piecePlayer);
-			//$(this).attr('class',$pieceClass);
+			$originalClick.removeClass('squareSelected');
+			console.log('Next player: '+nextPlayer);
+			clicked = false;
+		}
+
+		//Lower rank piece beating higher rank piece
+		else if ($pieceRank < $(this).attr('rank') && $(this).attr('rank')) {
+			nextPlayer = $(this).attr('player');
+			$originalClick.html('&nbsp;');
+			$originalClick.removeClass('squareSelected');
+			console.log('Next player: '+nextPlayer);
+			clicked = false;
+		}
+
+		//Move to empty piece
+		else if (!$(this).attr('rank')) {
+			if ($piecePlayer === '1') {
+				nextPlayer = '2';
+			}
+			else if ($piecePlayer === '2') {
+				nextPlayer = '1';
+			}
+		else {
+				console.log('nextPlayer not set if you move to empty square');
+			}
+		}
+			$(this).text($pieceRank);
+			$originalClick.html('&nbsp;');
+			$(this).attr('rank', $pieceRank);
+			$(this).attr('player',$piecePlayer);
+			$originalClick.removeClass('squareSelected');
+			console.log('Next player: '+nextPlayer);
 			clicked = false;
 		}
 	}
+
+	//If player clicks on non-player piece
 	else {
 		console.log('Choose a piece to move');
 	}
+
+	//Check for winner at the end of turn
 	if($('.square.den').first().attr('rank')) {
 		var winner = $('.square.den').attr('player');
 		console.log('Player ' + winner + ' wins.');
