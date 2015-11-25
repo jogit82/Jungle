@@ -396,35 +396,30 @@ function playerMove() {
 		if ($piecePlayer === $(this).attr('player')) {
 		}
 
-		//check winner 
-		//if den has a piece that belongs to opponent
+		//Check for winner 
+		//If den has a piece that belongs to opponent
 		if ($(this).attr('den') && $(this).attr('rank') && $(this).attr('player') !== $piecePlayer) {
 			console.log('Player ' + $piecePlayer + ' won!' );
 		}
 
-		//If own piece move to player's 1 den, do not change its player attribute and do not trigger winning message
-		//empty own den
-		else if ($(this).attr('den') && $(this).attr('rank') && $(this).attr('player') === $piecePlayer) {
-			if ($piecePlayer === '1') {
-				nextPlayer = '2';
-				}
-				else if ($piecePlayer === '2') {
-					nextPlayer = '1';
-				}
-			$(this).text($pieceRank);
-			$originalClick.html('&nbsp;');
-			$(this).attr('rank', $pieceRank);
-			$originalClick.removeClass('squareSelected')
-			console.log('Next player: '+nextPlayer);
-			clicked = false;
+		//Not allowed to guard your den by sitting inside
+		else if ($(this).attr('den') &&
+				($(this).attr('player') === $piecePlayer)) {
+			console.log('Cannot enter your own den');
 		}
+
 		//empty opponent den --> Player wins!
 		else if ($(this).attr('den') &&
 				 !$(this).attr('rank') && 
 				($(this).attr('player') !== $piecePlayer)
 				) {
+			$(this).text($pieceRank);
+			$originalClick.html('&nbsp;');
+			$(this).attr('rank', $pieceRank);
+			$(this).attr('player',$piecePlayer);
+			$originalClick.removeClass('squareSelected');
 			console.log('Player ' + $piecePlayer + ' won!' );
-			clicked = false;
+			break;
 		}
 
 		//Move to empty piece except river and piece is not a rat('1')
