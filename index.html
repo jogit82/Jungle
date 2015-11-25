@@ -1,57 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
     <title>Jungle by jogit82</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
   </head>
+
   <body>
-    <div class="wrapper">
-      <header class="without-description">
+
+    <header>
+      <div class="container">
         <h1>Jungle</h1>
-        <p></p>
-        <p class="view"><a href="https://github.com/jogit82/Jungle">View the Project on GitHub <small>jogit82/Jungle</small></a></p>
-        <ul>
-          <li><a href="https://github.com/jogit82/Jungle/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/jogit82/Jungle/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/jogit82/Jungle">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <p>Currently I am working on:
-(Numbers in the front reflect priority)
-1-Own player go into den, that player shouldn't trigger winning message----DONE
-if own player is in den, lower rank opponent player won ----- BUG---decided to not let its own player go into the den</p>
+        <h2></h2>
 
-<p>4-only rat can swim in river ----possibleMoves() --Add class possible:true to tiles, remove them after moving</p>
+        <section id="downloads">
+          <a href="https://github.com/jogit82/Jungle/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/jogit82/Jungle/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/jogit82/Jungle" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
 
-<p>2-current player can move his own piece, but not the opponent's ----DONE</p>
+    <div class="container">
+      <section id="main_content">
+        <p>Jungle or Dou Shou Qi (Chinese: 鬥獸棋, "Game of Fighting Animals") is a traditional Chinese board game played on a 7×9 board. The game is also known as The Jungle Game, Jungle Chess, or Animals Chess, and is sometimes called Oriental Chess or Children's Chess.</p>
 
-<p>3-Player can only fight with opponent piece but not his own ------DONE
-(if this.player === )
-3.5-remove ranks in traps and rivers ------DONE</p>
-
-<p>5-tiger(6) and lion(7) cannot swim in river but can hop over the river. -----possibleMoves()--Add class possible:true to tiles, remove them after moving</p>
-
-<p>6-The player may capture any enemy piece in one of the player's trap squares regardless of rank. ----var rankBeforeTrap</p>
-
-<p>7-If you click once, and click again on the same piece, it should not let the player move to the same square</p>
+<p>Jungle is a two-player strategy game and has been cited as resembling the Western game Stratego,[1] but Stratego actually has more in common with another Chinese board game known as Jun Qi (Chinese: 軍棋) or "Army Game".</p>
       </section>
     </div>
-    <footer>
-      <p>Project maintained by <a href="https://github.com/jogit82">jogit82</a></p>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+
     
   </body>
 </html>
