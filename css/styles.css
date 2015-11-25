@@ -1,58 +1,138 @@
 body {
-	background-color: grey;
+	padding: 20px;
+	font-family: 'Alegreya', serif;
+	background-color: black;
+	margin: 0 auto;
+}
+h3 {
+	text-decoration: underline;;
+}
+.navbar-brand {
+	font-size: 80px;
+}
+
+.navbar-nav li{
+	font-size: 20px;
 }
 
 .title {
-	
+	font-size: 30px;
+	color: white;
+}
+
+.playerStats {
+	font-size: 20px;
+	color: white;
 }
 
 #mainContent {
-	padding: 40px;
-	background-color: red;
+	background-color: black;
 }
 
 #gameBoard {
-	width: 450px;
-	background-color: green;
+	width: 470px;
+	padding: 20px;
+	border: 4px grey solid;
 }
 
 .square {
-	border: 1px black solid;
+	padding: 0px;
 	background-color: white;
 	display: inline-block;
 	line-height: 60px;
 	text-align: center;
 	height: 60px;
 	width: 60px;
-}
-
-.rows .square[player='1'] {
-	background-color: lavender;
-}
-
-.rows .square[player='2'] {
-	background-color: cyan;
+	background-size: 58px 60px;
+    background-repeat: no-repeat;
 }
 
 .rows .square[river] {
-	background-color: lightblue;
+	background-image: url("../images/river.gif");
 }
 
 .rows .square[den] {
-	background-color: red;
+	background-color: orange;
 }
 
 .rows .square[trap] {
-	background-color: yellow;
+	background-color: grey;
 }
 
 .rows .square.squareSelected {
-	background-color: black;
+	background-color: pink;
 	color: white;
 }
-.rows .square.highlighted {
-	border: 2px red dotted;
-}
+
 #gameStats {
-	background-color: red;
+	color: white;
+	font-family: 'Alegreya';
+}
+
+.footer {
+	text-align: center;
+}
+
+.rows .square[rank='1'].square[player='1'] {
+	background-image: url("../images/yellow_rat.gif");
+}
+
+.rows .square[rank='2'].square[player='1'] {
+	background-image: url("../images/yellow_cat.gif");
+}
+
+.rows .square[rank='3'].square[player='1'] {
+	background-image: url("../images/yellow_dog.gif");
+}
+
+.rows .square[rank='4'].square[player='1'] {
+	background-image: url("../images/yellow_wolf.gif");
+}
+
+.rows .square[rank='5'].square[player='1'] {
+	background-image: url("../images/yellow_leopard.gif");
+}
+
+.rows .square[rank='6'].square[player='1'] {
+	background-image: url("../images/yellow_tiger.gif");
+}
+
+.rows .square[rank='7'].square[player='1'] {
+	background-image: url("../images/yellow_lion.gif");
+}
+
+.rows .square[rank='8'].square[player='1'] {
+	background-image: url("../images/yellow_elephant.gif");
+}
+
+.rows .square[rank='1'].square[player='2'] {
+	background-image: url("../images/red_rat.gif");
+}
+
+.rows .square[rank='2'].square[player='2'] {
+	background-image: url("../images/red_cat.gif");
+}
+
+.rows .square[rank='3'].square[player='2'] {
+	background-image: url("../images/red_dog.gif");
+}
+
+.rows .square[rank='4'].square[player='2'] {
+	background-image: url("../images/red_wolf.gif");
+}
+
+.rows .square[rank='5'].square[player='2'] {
+	background-image: url("../images/red_leopard.gif");
+}
+
+.rows .square[rank='6'].square[player='2'] {
+	background-image: url("../images/red_tiger.gif");
+}
+
+.rows .square[rank='7'].square[player='2'] {
+	background-image: url("../images/red_lion.gif");
+}
+
+.rows .square[rank='8'].square[player='2'] {
+	background-image: url("../images/red_elephant.gif");
 }

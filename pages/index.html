@@ -7,6 +7,7 @@
     <link rel="stylesheet" media="" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.css">
     <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Alegreya:400,900' rel='stylesheet' type='text/css'>
     <title>Jungle Board Game</title>
 
 </head>
@@ -26,8 +27,8 @@
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">
 			<li><a href="#">New Game</a></li>
-			<li><a href="#">Github Me!</a></li>
-			<li><a href="#">Feedback</a></li>
+			<li><a href="http://jogit82.github.io/Jungle/">Github Me!</a></li>
+			<li><a href="mailto:fishoil@outlook.com?Subject=Jungle%20Board%20Game" target="_top">Email Me</a></li>
 		</ul>
 		</div>
 	</div>
@@ -35,26 +36,42 @@
 <section id="mainContent">
 
 	<div class="row top-row">
-		<div class ="col-md-6 col-sm-6"><p>PLAYER 1</p></div>
-		<div class="col-md-6 col-sm-6 title">Jungle</div>
+		<div class ="col-md-6 col-sm-6 playerStats"><p>PLAYER 1</p></div>
+		<div class="col-md-6 col-sm-6 title">How To Play</div>
 	</div>
 
 	<div class="row middle-row">
 		<div class="col-md-6 col-sm-6" id="gameBoard"></div>
-		<div class="col-md-6 col-sm-6" id="gameStats">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+		<div class="col-md-6 col-sm-6" id="gameStats">
+			<h3>To Win</h3>
+			<h4>1) By entering the opponent's den </h4>
+			<h4>2) By capturing all the opponent's animals</h4>
+			<h3>Movement</h3>
+			<h4>1) Rats can swim in the river</h4>
+			<h4>2) Lions and tigers can jump over the river but cannot swim</h4>
+			<h3>Capturing</h3>
+			<h4>1) Animal with a higher rank kills the lower rank</h4>
+			<h4>2) But the rat may kill the elephant</h4>
+			<h4>3) Player may capture enemy piece in one of the player's trap</h4>
+			<h3>Legend</h3>
+			<h4>Rat - 1</h4>
+			<h4>Cat - 2</h4>
+			<h4>Dog - 3</h4>
+			<h4>Wolf- 4</h4>
+			<h4>Leopard - 5</h4>
+			<h4>Tiger - 6</h4>
+			<h4>Lion - 7</h4>
+			<h4>Elephant - 8</h4>
+			</div>
 	</div>
 
 	<div class="row bottom-row">
-		<div class="col-md-6 col-sm-6"><p>PLAYER 2</p></div>
+		<div class="col-md-6 col-sm-6 playerStats"><p>PLAYER 2</p></div>
 	</div>
 
 </section>
  
+ <footer class="footer">Jo Keller &copy All Rights Reserved</footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.0/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>

@@ -24,100 +24,97 @@ $(document).ready(function(){
 				var $square = $('<div>', {
 				 class: 'square',
 				 col: j,
-				 html: 'river',
-				 river: true
+				 river: true,
+				 html:'&nbsp'
 				 });
 			} 
 			else if (i === 3 && j === 2) {
 				var $square = $('<div>', {
 				 class: 'square',
 				 col: j,
-				 html: 'river',
-				 river: true
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 4 && j === 1) {
 				var $square = $('<div>', {
 				 class: 'square',
 				 col: j,
-				 html: 'river',
-				 river: true
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 4 && j === 2) {
 				var $square = $('<div>', {
 				 class: 'square',
 				 col: j,
-				 
-				 html: 'river',
-				 river: true
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 5 && j === 1) {
 				var $square = $('<div>', {
 				 class: 'square',
 				 col: j,
-				 
-				 html: 'river',
-				 river: true
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 5 && j === 2) {
 				var $square = $('<div>', {
 				 class: 'square',
 				 col: j,
-				 
-				 html: 'river',
-				 river: true
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 			//setting right river squares
 			else if (i === 3 && j === 4) {
 				var $square = $('<div>', {
 				 class: 'square',
-				 col: j,			 
-				 html: 'river',
-				 river: true
+				 col: j,	
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 3 && j === 5) {
 				var $square = $('<div>', {
 				 class: 'square',
 				 col: j,
-				 html: 'river',
-				 river: true
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 4 && j === 4) {
 				var $square = $('<div>', {
 				 class: 'square',
-				 col: j,			 
-				 html: 'river',
-				 river: true
+				 col: j,	
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 4 && j === 5) {
 				var $square = $('<div>', {
 				 class: 'square',
-				 col: j,				 
-				 html: 'river',
-				 river: true
+				 col: j,	
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 5 && j === 4) {
 				var $square = $('<div>', {
 				 class: 'square',
-				 col: j,				 
-				 html: 'river',
-				 river: true
+				 col: j,	
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 5 && j === 5) {
 				var $square = $('<div>', {
 				 class: 'square',
-				 col: j,				 
-				 html: 'river',
-				 river: true
+				 col: j,	
+				 river: true,
+				 html:'&nbsp'
 				 });
 			}
 
@@ -128,7 +125,7 @@ $(document).ready(function(){
 				 col: j,
 				 den: true,
 				 player: 1,
-				 html: 'den'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 8 && j === 3) {
@@ -137,7 +134,7 @@ $(document).ready(function(){
 				 col: j,
 				 den: true,
 				 player: 2,
-				 html: 'den'
+				 html:'&nbsp'
 				 });
 			}
 
@@ -148,7 +145,7 @@ $(document).ready(function(){
 				 col: j,
 				 trap: true,
 				 belongsTo: 1,
-				 html: 'trap'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 1 && j === 3) {
@@ -157,7 +154,7 @@ $(document).ready(function(){
 				 col: j,
 				 trap: true,
 				 belongsTo: 1,
-				 html: 'trap'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 0 && j === 4) {
@@ -166,7 +163,7 @@ $(document).ready(function(){
 				 col: j,
 				 trap: true,
 				 belongsTo: 1,
-				 html: 'trap'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 8 && j === 2) {
@@ -175,7 +172,7 @@ $(document).ready(function(){
 				 col: j,
 				 trap: true,
 				 belongsTo: 2,
-				 html: 'trap'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 7 && j === 3) {
@@ -184,7 +181,7 @@ $(document).ready(function(){
 				 col: j,
 				 trap: true,
 				 belongsTo: 2,
-				 html: 'trap'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 8 && j === 4) {
@@ -193,7 +190,7 @@ $(document).ready(function(){
 				 col: j,
 				 trap: true,
 				 belongsTo: 2,
-				 html: 'trap'
+				 html:'&nbsp'
 				 });
 			}
 
@@ -205,7 +202,7 @@ $(document).ready(function(){
 			 	 col : j,
 			 	 rank : 7, //lion
 			 	 player : 1,
-				 html: '7'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 1 && j === 1) {
@@ -214,7 +211,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 3, //dog
 				 player: 1,
-				 html: '3'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 2 && j === 0) {
@@ -223,7 +220,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 1, //rat
 				 player: 1,
-				 html: '1'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 2 && j === 2) {
@@ -232,7 +229,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 5, //leopard
 				 player: 1,
-				 html: '5'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 2 && j === 4) {
@@ -241,7 +238,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 4, //wolf
 				 player: 1,
-				 html: '4'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 1 && j === 5) {
@@ -250,7 +247,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 2, //cat
 				 player: 1,
-				 html: '2'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 0 && j === 6) {
@@ -259,7 +256,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 6, //tiger
 				 player: 1,
-				 html: '6'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 2 && j === 6) {
@@ -268,7 +265,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 8, //elephant
 				 player: 1,
-				 html: '8'
+				 html:'&nbsp'
 				 });
 			}
 
@@ -279,7 +276,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 7, //lion
 				 player: 2,
-				 html: '7'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 7 && j === 5) {
@@ -288,7 +285,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 3, //dog
 				 player: 2,
-				 html: '3'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 6 && j === 6) {
@@ -297,7 +294,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 1, //rat
 				 player: 2,
-				 html: '1'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 6 && j === 4) {
@@ -306,7 +303,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 5, //leopard
 				 player: 2,
-				 html: '5'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 6 && j === 2) {
@@ -315,7 +312,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 4, //wolf
 				 player: 2,
-				 html: '4'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 7 && j === 1) {
@@ -324,7 +321,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 2, //cat
 				 player: 2,
-				 html: '2'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 8 && j === 0) {
@@ -333,7 +330,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 6, //tiger
 				 player: 2,
-				 html: '6'
+				 html:'&nbsp'
 				 });
 			}
 			else if (i === 6 && j === 0) {
@@ -342,7 +339,7 @@ $(document).ready(function(){
 				 col: j,
 				 rank: 8, //elephant
 				 player: 2,
-				 html: '8'
+				 html:'&nbsp'
 				 });
 			}
 
@@ -351,7 +348,7 @@ $(document).ready(function(){
 				var $square = $('<div>', {
 				 class: 'square',
 				 col: j,
-				 html: '&nbsp',
+				 html:'&nbsp'
 				 });
 			}
 			
@@ -413,7 +410,6 @@ function playerMove() {
 				 !$(this).attr('rank') && 
 				($(this).attr('player') !== $piecePlayer)
 				) {
-			$(this).text($pieceRank);
 			$originalClick.html('&nbsp;');
 			$(this).attr('rank', $pieceRank);
 			$(this).attr('player',$piecePlayer);
@@ -431,7 +427,6 @@ function playerMove() {
 				nextPlayer = '1';
 			}
 			//Setting empty tile with moving piece
-			$(this).text($pieceRank);
 			$originalClick.html('&nbsp;');
 			$(this).attr('rank', $pieceRank);
 			$(this).attr('player',$piecePlayer);
@@ -450,7 +445,6 @@ function playerMove() {
 				nextPlayer = '1';
 			}
 			//Setting empty tile with moving piece
-			$(this).text($pieceRank);
 			$originalClick.html('&nbsp;');
 			$(this).attr('rank', $pieceRank);
 			$(this).attr('player',$piecePlayer);
@@ -478,7 +472,6 @@ function piecesFight(pieceFrom, rank, player, pieceTo) {
 		($pieceFromRank == 1 || $pieceFromRank == 8) && ($pieceTo.attr('rank') == 8 || $pieceTo.attr('rank') == 1)) {
 		nextPlayer = $pieceTo.attr('player');
 		if ($pieceFromRank == 1) {
-			$pieceTo.text($pieceFromRank);
 			$pieceFrom.html('&nbsp;');
 			$pieceTo.attr('rank', $pieceFromRank);
 			$pieceTo.attr('player', $pieceFromPlayer);
@@ -487,7 +480,6 @@ function piecesFight(pieceFrom, rank, player, pieceTo) {
 			}
 		}
 		else if ($pieceFromRank == 8) {
-			$pieceFrom.text($pieceTo.attr('rank'));
 			$pieceFrom.html('&nbsp;');
 			$pieceTo.attr('rank', $pieceTo.attr('rank'));
 			$pieceTo.attr('player', $pieceTo.attr('player'));
@@ -506,7 +498,6 @@ function piecesFight(pieceFrom, rank, player, pieceTo) {
 			$pieceTo.attr('rank')))
 			{
 		nextPlayer = $pieceTo.attr('player');
-		$pieceTo.text($pieceFromRank);
 		$pieceFrom.html('&nbsp;');
 		$pieceTo.attr('rank', $pieceFromRank);
 		$pieceTo.attr('player', $pieceFromPlayer);
@@ -528,7 +519,6 @@ function piecesFight(pieceFrom, rank, player, pieceTo) {
 	else if ($pieceFromPlayer != $pieceTo.attr('belongsTo') && $pieceTo.attr('trap')) {
 		var $tempRank = $pieceFromRank / 10;
 		$pieceTo.attr('rank', $tempRank);
-		$pieceTo.text($tempRank);
 		$pieceTo.attr('player', $pieceFromPlayer);
 		if ($pieceFromPlayer == '1') {
 			nextPlayer = '2';
