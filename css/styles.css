@@ -37,7 +37,7 @@ h3 {
 
 .square {
 	padding: 0px;
-	border: 1px grey solid;
+	border: 1px grey dotted;
 	background-color: white;
 	display: inline-block;
 	line-height: 60px;
