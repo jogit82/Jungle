@@ -17,7 +17,7 @@ $(document).ready(function(){
 		
 		$('#gameBoard').append($row);
 
-		//setting
+		//setting each tile with the folowing
 		for (var j = 0; j < 7; j ++) {
 			//setting left river
 			if (i === 3 && j === 1) {
@@ -201,9 +201,7 @@ $(document).ready(function(){
 			else if (i === 0 && j === 0) {
 				var $square = $('<div>', {
 				 class: 'square',
-				 data : {
-				 	rank : 7
-				 },
+				 rank : 7,
 			 	 col : j,
 			 	 rank : 7, //lion
 			 	 player : 1,
@@ -369,7 +367,7 @@ var clicked = false;
 var nextPlayer, $originalClick, $pieceRank, $piecePlayer, $pieceClass;
 
 function playerMove() {
-	console.log('Player ' + $currentPlayer + '\s move.')
+	console.log('Current player: ' + $currentPlayer);
 	//Choosing a piece to move from
 	if (!clicked && $(this).attr('rank') && $(this).attr('player') === $currentPlayer) {
 		$originalClick = $(this);
@@ -380,15 +378,17 @@ function playerMove() {
 		clicked = true;
 	}
 
+	//Not your turn
 	else if (!clicked && $(this).attr('rank') && $(this).attr('player') !== $currentPlayer) {
 		console.log('Oops! Player ' + $currentPlayer + '\s move.')
 	}
+
 
 	//Choosing a destination piece to move to
 	else if (clicked) {
 		var $secondClick = $(this);
 
-		//Not finghting among themselves
+		//Not fighting among themselves
 		if ($piecePlayer !== $(this).attr('player')) {
 			piecesFight($originalClick, $pieceRank, $piecePlayer, $secondClick);
 		}
@@ -419,7 +419,6 @@ function playerMove() {
 			$(this).attr('player',$piecePlayer);
 			$originalClick.removeClass('squareSelected');
 			console.log('Player ' + $piecePlayer + ' won!' );
-			break;
 		}
 
 		//Move to empty piece except river and piece is not a rat('1')

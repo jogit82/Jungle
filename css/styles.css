@@ -2,17 +2,18 @@ body {
 	background-color: grey;
 }
 
-
-.test {
-	background-color: white;
+.title {
+	
 }
 
 #mainContent {
-	margin-left: 40px;
+	padding: 40px;
+	background-color: red;
 }
 
 #gameBoard {
 	width: 450px;
+	background-color: green;
 }
 
 .square {
@@ -49,7 +50,9 @@ body {
 	background-color: black;
 	color: white;
 }
-
+.rows .square.highlighted {
+	border: 2px red dotted;
+}
 #gameStats {
-	background-color: grey;
+	background-color: red;
 }
