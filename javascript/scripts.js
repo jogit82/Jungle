@@ -376,12 +376,21 @@ function playerMove() {
 	}
 
 	else if (!clicked && $(this).attr('rank') && $(this).attr('player') !== $currentPlayer) {
+		console.log('Oops! Player ' + $currentPlayer + '\s move.')
 	}
 
 	//Choosing a destination piece to move to
 	else if (clicked) {
 		var $secondClick = $(this);
-		piecesFight($originalClick, $pieceRank, $piecePlayer, $secondClick);
+
+		//Not finghting with themselves
+		if ($piecePlayer !== $(this).attr('player')) {
+			piecesFight($originalClick, $pieceRank, $piecePlayer, $secondClick);
+		}
+
+		if ($piecePlayer === $(this).attr('player')) {
+			console.log('You should not attack your own pieces.');
+		}
 
 		//check winner 
 		//if den has a piece that belongs to opponent
@@ -440,7 +449,6 @@ function playerMove() {
 		console.log('Choose a piece to move');
 	}
 }
-
 
 function piecesFight(pieceFrom, rank, player, pieceTo) {
 	$pieceFromRank = parseInt(rank);
@@ -505,4 +513,8 @@ function piecesFight(pieceFrom, rank, player, pieceTo) {
 
 		$pieceFrom.removeAttr('rank');
 		$currentPlayer = nextPlayer;
+}
+
+function possibleMoves() {
+	
 }
