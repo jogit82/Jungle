@@ -195,9 +195,12 @@ $(document).ready(function(){
 			else if (i === 0 && j === 0) {
 				var $square = $('<div>', {
 				 class: 'square',
-				 col: j,
-				 rank: 7, //lion
-				 player: 1,
+				 data : {
+				 	rank : 7
+				 },
+			 	 col : j,
+			 	 rank : 7, //lion
+			 	 player : 1,
 				 html: '7'
 				 });
 			}
@@ -357,70 +360,73 @@ $(document).ready(function(){
 });
 
 var clicked = false;
-function playerMove() {
-	var currentPlayer;
-	var nextPlayer;
+var currentPlayer;
+var nextPlayer;
+var $originalClick, $pieceRank, $piecePlayer, $pieceClass;
 
+
+function playerMove() {
 	//Choosing a piece to move from
 	if (!clicked && $(this).attr('rank')) {
 		$originalClick = $(this);
-		$(this).addClass('squareSelected');
 		$pieceRank = $(this).attr('rank');
 		$piecePlayer = $(this).attr('player');
 		$pieceClass = $(this).attr('class');
-		$(this).removeAttr('player');
-		$(this).removeAttr('rank');
-		console.log('Current player: '+$piecePlayer);
-		return clicked = true;
+		$(this).addClass('squareSelected');
+		clicked = true;
 	}
 
 	//Choosing a destination piece to move to
 	else if (clicked) {
-		//Special scenario: rat(1) vs elephant(8)
-		if ($pieceRank === '1' && $(this).attr('rank') === '8') {
-			nextPlayer = $(this).attr('player');
+		var $secondClick = $(this);
+		piecesFight($originalClick, $pieceRank, $piecePlayer, $secondClick);
+
+		//check winner
+		if ($(this).attr('den') && $(this).attr('rank') && $(this).attr('player') !== $piecePlayer) {
+			console.log('Player ' + $piecePlayer + ' won!' );
+		}
+
+		//If own piece move to player's 1 den, do not change its player attribute and do not trigger winning message
+		//empty own den, do not remove player attribute when move away from den
+		else if ($(this).attr('den') && $(this).attr('rank') && $(this).attr('player') === $piecePlayer) {
+			if ($piecePlayer === '1') {
+				nextPlayer = '2';
+				}
+				else if ($piecePlayer === '2') {
+					nextPlayer = '1';
+				}
 			$(this).text($pieceRank);
 			$originalClick.html('&nbsp;');
 			$(this).attr('rank', $pieceRank);
-			$(this).attr('player', $piecePlayer);
-			$originalClick.removeClass('squareSelected');
+			$originalClick.removeClass('squareSelected')
 			console.log('Next player: '+nextPlayer);
 			clicked = false;
 		}
-
-		//Higher rank piece beating lower rank piece
-		else if ($pieceRank => $(this).attr('rank') && $(this).attr('rank')) {
-			nextPlayer = $(this).attr('player');
-			$(this).text($pieceRank);
-			$originalClick.html('&nbsp;');
-			$(this).attr('rank', $pieceRank);
-			$(this).attr('player',$piecePlayer);
-			$originalClick.removeClass('squareSelected');
-			console.log('Next player: '+nextPlayer);
+		//empty opponent den --> Player wins!
+		else if ($(this).attr('den') &&
+				 !$(this).attr('rank') && 
+				($(this).attr('player') !== $piecePlayer)
+				) {
+			console.log('Player ' + $piecePlayer + ' won!' );
 			clicked = false;
 		}
-
-		//Lower rank piece beating higher rank piece
-		else if ($pieceRank < $(this).attr('rank') && $(this).attr('rank')) {
-			nextPlayer = $(this).attr('player');
-			$originalClick.html('&nbsp;');
-			$originalClick.removeClass('squareSelected');
-			console.log('Next player: '+nextPlayer);
-			clicked = false;
-		}
+		//occupied opponent den --> Fight! Reuse piecesFight function
+		// else if ($(this).attr('den') && $(this).attr('rank') && $(this).attr('player') !== $piecePlayer) {
+		// 	piecesFight($originalClick, $pieceRank, $piecePlayer, $secondClick);
+		// 	console.log('Player ' + $piecePlayer + ' won!' );
+		// 	clicked = false;
+		// }
 
 		//Move to empty piece
 		else if (!$(this).attr('rank')) {
+			//Determining who's turn
 			if ($piecePlayer === '1') {
 				nextPlayer = '2';
 			}
 			else if ($piecePlayer === '2') {
 				nextPlayer = '1';
 			}
-		else {
-				console.log('nextPlayer not set if you move to empty square');
-			}
-		}
+			//Setting empty tile with moving piece
 			$(this).text($pieceRank);
 			$originalClick.html('&nbsp;');
 			$(this).attr('rank', $pieceRank);
@@ -435,16 +441,127 @@ function playerMove() {
 	else {
 		console.log('Choose a piece to move');
 	}
-
-	//Check for winner at the end of turn
-	if($('.square.den').first().attr('rank')) {
-		var winner = $('.square.den').attr('player');
-		console.log('Player ' + winner + ' wins.');
-	}
-	else if ($('.square.den').last().attr('rank')){
-		var winner = $('.square.den').attr('player');
-		console.log('Player ' + winner + ' wins.');
-	}
 }
 
 
+function piecesFight(pieceFrom, rank, player, pieceTo) {
+	$pieceFromRank = parseInt(rank);
+	$pieceFromPlayer = parseInt(player);
+	$pieceTo = pieceTo;
+	$pieceFrom = pieceFrom;
+
+	//Special scenario: rat(1) vs elephant(8)
+		if (
+			($pieceFromRank == 1 || $pieceFromRank == 8) && ($pieceTo.attr('rank') == 8 || $pieceTo.attr('rank') == 1)) {
+			nextPlayer = $pieceTo.attr('player');
+			if ($pieceFromRank == 1) {
+				$pieceTo.text($pieceFromRank);
+				$pieceFrom.html('&nbsp;');
+				$pieceTo.attr('rank', $pieceFromRank);
+				$pieceTo.attr('player', $pieceFromPlayer);
+			}
+			else if ($pieceFromRank == 8) {
+				$pieceFrom.text($pieceTo.attr('rank'));
+				$pieceFrom.html('&nbsp;');
+				$pieceTo.attr('rank', $pieceTo.attr('rank'));
+				$pieceTo.attr('player', $pieceTo.attr('player'));
+			}
+			$pieceFrom.removeClass('squareSelected');
+			console.log('Current player: '+$piecePlayer);
+			console.log('Next player: '+nextPlayer);
+			clicked = false;
+		}
+
+		//Higher rank piece beating lower rank piece 
+		//If both are same rank, the piece that is moving will beat the other piece
+		else if (($pieceFromRank > $pieceTo.attr('rank') && 
+				$pieceTo.attr('rank')) || 
+				($pieceFromRank === $pieceTo.attr('rank') && 
+				$pieceTo.attr('rank')))
+				{
+			nextPlayer = $pieceTo.attr('player');
+			$pieceTo.text($pieceFromRank);
+			$pieceFrom.html('&nbsp;');
+			$pieceTo.attr('rank', $pieceFromRank);
+			$pieceTo.attr('player', $pieceFromPlayer);
+			$pieceFrom.removeClass('squareSelected');
+			console.log('Next player: '+nextPlayer);
+			clicked = false;
+		}
+
+		//Lower rank piece beating higher rank piece
+		else if ($pieceRank < $pieceTo.attr('rank') && $pieceTo.attr('rank')) {
+			nextPlayer = $pieceTo.attr('player');
+			$pieceFrom.html('&nbsp;');
+			$pieceFrom.removeClass('squareSelected');
+			console.log('Next player: '+nextPlayer);
+			clicked = false;
+		}
+		// Do not remove player attribute if player move away from its own den
+		if(!$pieceFrom.attr('den')) {
+			$pieceFrom.removeAttr('player');
+		}
+		$pieceFrom.removeAttr('rank');
+}
+
+
+		// else if ($(this).attr('den')) {
+		// 	//Determining who wins the game
+		// 	//If player 2's piece is in player 1's den
+		// 	console.log($piecePlayer);
+		// 	console.log($('.square.den').first().attr('player'));
+		// 	if ($('.square.den').first().attr('player') !== $piecePlayer) {
+		// 		console.log('Player ' + $piecePlayer + ' won.');
+		// 	}
+
+		// 	//If player 1's piece is in player 2's den
+		// 	else if ($('.square.den').last().attr('player') !== $piecePlayer) {
+		// 		console.log('Player ' + $piecePlayer + ' won.');
+		// 	}
+
+		// 	//If player 1 piece is in its own den
+		// 	else if ($('.square.den').first().attr('player') === $piecePlayer) {
+		// 		if ($piecePlayer === '1') {
+		// 		nextPlayer = '2';
+		// 		}
+		// 		else if ($piecePlayer === '2') {
+		// 			nextPlayer = '1';
+		// 		}
+		// 	$(this).text($pieceRank);
+		// 	$originalClick.html('&nbsp;');
+		// 	$(this).attr('rank', $pieceRank);
+		// 	$originalClick.removeClass('squareSelected')
+		// 	console.log('Next player: '+nextPlayer);
+		// 	}
+		// 	//If player 2 piece is in its own den
+		// 	else if ($('.square.den').last().attr('player') === $piecePlayer) {
+		// 		if ($piecePlayer === '1') {
+		// 		nextPlayer = '2';
+		// 		}
+		// 		else if ($piecePlayer === '2') {
+		// 			nextPlayer = '1';
+		// 		}
+		// 	$(this).text($pieceRank);
+		// 	$originalClick.html('&nbsp;');
+		// 	$(this).attr('rank', $pieceRank);
+		// 	$originalClick.removeClass('squareSelected')
+		// 	console.log('Next player: '+nextPlayer);
+		// 	}
+
+		// 	clicked = false;
+		// }
+
+
+
+
+	// //If opponent piece is in the den, opponent wins
+	// if($('.square.den').first().attr('rank') 
+	// 	&& ($('.square.den').first().attr('player') !== $piecePlayer)) {
+	// 	var winner = $piecePlayer;
+	// 	console.log('Player ' + winner + ' wins.');
+	// }
+	// if ($('.square.den').last().attr('rank') 
+	// 	&& ($('.square.den').first().attr('player') !== $piecePlayer)) {
+	// 	var winner = $piecePlayer;
+	// 	console.log('Player ' + winner + ' wins.');
+	// }
