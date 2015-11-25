@@ -147,6 +147,7 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
+				 belongsTo: 1,
 				 html: 'trap'
 				 });
 			}
@@ -155,6 +156,7 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
+				 belongsTo: 1,
 				 html: 'trap'
 				 });
 			}
@@ -163,6 +165,7 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
+				 belongsTo: 1,
 				 html: 'trap'
 				 });
 			}
@@ -171,6 +174,7 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
+				 belongsTo: 2,
 				 html: 'trap'
 				 });
 			}
@@ -179,6 +183,7 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
+				 belongsTo: 2,
 				 html: 'trap'
 				 });
 			}
@@ -187,6 +192,7 @@ $(document).ready(function(){
 				 class: 'square',
 				 col: j,
 				 trap: true,
+				 belongsTo: 2,
 				 html: 'trap'
 				 });
 			}
@@ -362,7 +368,6 @@ $(document).ready(function(){
 var clicked = false;
 var nextPlayer, $originalClick, $pieceRank, $piecePlayer, $pieceClass;
 
-
 function playerMove() {
 	console.log('Player ' + $currentPlayer + '\s move.')
 	//Choosing a piece to move from
@@ -383,13 +388,12 @@ function playerMove() {
 	else if (clicked) {
 		var $secondClick = $(this);
 
-		//Not finghting with themselves
+		//Not finghting among themselves
 		if ($piecePlayer !== $(this).attr('player')) {
 			piecesFight($originalClick, $pieceRank, $piecePlayer, $secondClick);
 		}
 
 		if ($piecePlayer === $(this).attr('player')) {
-			console.log('You should not attack your own pieces.');
 		}
 
 		//check winner 
@@ -457,64 +461,84 @@ function piecesFight(pieceFrom, rank, player, pieceTo) {
 	$pieceFrom = pieceFrom;
 
 	//Special scenario: rat(1) vs elephant(8) //////////might not have to write the second condition... check later
-		if (
-			($pieceFromRank == 1 || $pieceFromRank == 8) && ($pieceTo.attr('rank') == 8 || $pieceTo.attr('rank') == 1)) {
-			nextPlayer = $pieceTo.attr('player');
-			if ($pieceFromRank == 1) {
-				$pieceTo.text($pieceFromRank);
-				$pieceFrom.html('&nbsp;');
-				$pieceTo.attr('rank', $pieceFromRank);
-				$pieceTo.attr('player', $pieceFromPlayer);
-				if (pieceTo.attr('den') && pieceTo.attr('player') !== currentPlayer) {
-					console.log(currentPlayer + ' won!!!!');
-				}
-			}
-			else if ($pieceFromRank == 8) {
-				$pieceFrom.text($pieceTo.attr('rank'));
-				$pieceFrom.html('&nbsp;');
-				$pieceTo.attr('rank', $pieceTo.attr('rank'));
-				$pieceTo.attr('player', $pieceTo.attr('player'));
-			}
-			$pieceFrom.removeClass('squareSelected');
-			console.log('Current player: '+$piecePlayer);
-			console.log('Next player: '+nextPlayer);
-			clicked = false;
-		}
-
-		//Higher rank piece beating lower rank piece 
-		//If both are same rank, the piece that is moving will beat the other piece
-		else if (($pieceFromRank > $pieceTo.attr('rank') && 
-				$pieceTo.attr('rank')) || 
-				($pieceFromRank === $pieceTo.attr('rank') && 
-				$pieceTo.attr('rank')))
-				{
-			nextPlayer = $pieceTo.attr('player');
+	if (
+		($pieceFromRank == 1 || $pieceFromRank == 8) && ($pieceTo.attr('rank') == 8 || $pieceTo.attr('rank') == 1)) {
+		nextPlayer = $pieceTo.attr('player');
+		if ($pieceFromRank == 1) {
 			$pieceTo.text($pieceFromRank);
 			$pieceFrom.html('&nbsp;');
 			$pieceTo.attr('rank', $pieceFromRank);
 			$pieceTo.attr('player', $pieceFromPlayer);
-			$pieceFrom.removeClass('squareSelected');
-			console.log('Next player: '+nextPlayer);
-			clicked = false;
+			if (pieceTo.attr('den') && pieceTo.attr('player') !== currentPlayer) {
+				console.log(currentPlayer + ' won!!!!');
+			}
 		}
-
-		//Lower rank piece beating higher rank piece
-		else if ($pieceRank < $pieceTo.attr('rank') && $pieceTo.attr('rank')) {
-			nextPlayer = $pieceTo.attr('player');
+		else if ($pieceFromRank == 8) {
+			$pieceFrom.text($pieceTo.attr('rank'));
 			$pieceFrom.html('&nbsp;');
-			$pieceFrom.removeClass('squareSelected');
-			console.log('Next player: '+nextPlayer);
-			clicked = false;
+			$pieceTo.attr('rank', $pieceTo.attr('rank'));
+			$pieceTo.attr('player', $pieceTo.attr('player'));
 		}
-		// Do not remove player attribute if player move away from its own den, but I decided that player is not allowed to sit inside their own den, so this block of code doesn't matter. 
-		if(!$pieceFrom.attr('den')) {
-			$pieceFrom.removeAttr('player');
-		}
+		$pieceFrom.removeClass('squareSelected');
+		console.log('Current player: '+$piecePlayer);
+		console.log('Next player: '+nextPlayer);
+		clicked = false;
+	}
 
-		$pieceFrom.removeAttr('rank');
-		$currentPlayer = nextPlayer;
+	//Higher rank piece beating lower rank piece 
+	//If both are same rank, the piece that is moving will beat the other piece
+	else if (($pieceFromRank > $pieceTo.attr('rank') && 
+			$pieceTo.attr('rank')) || 
+			($pieceFromRank === $pieceTo.attr('rank') && 
+			$pieceTo.attr('rank')))
+			{
+		nextPlayer = $pieceTo.attr('player');
+		$pieceTo.text($pieceFromRank);
+		$pieceFrom.html('&nbsp;');
+		$pieceTo.attr('rank', $pieceFromRank);
+		$pieceTo.attr('player', $pieceFromPlayer);
+		$pieceFrom.removeClass('squareSelected');
+		console.log('Next player: '+nextPlayer);
+		clicked = false;
+	}
+
+	//Lower rank piece beating higher rank piece
+	else if ($pieceRank < $pieceTo.attr('rank') && $pieceTo.attr('rank')) {
+		nextPlayer = $pieceTo.attr('player');
+		$pieceFrom.html('&nbsp;');
+		$pieceFrom.removeClass('squareSelected');
+		console.log('Next player: '+nextPlayer);
+		clicked = false;
+	}
+
+	//if a piece moves to opponent's trap
+	else if ($pieceFromPlayer != $pieceTo.attr('belongsTo') && $pieceTo.attr('trap')) {
+		var $tempRank = $pieceFromRank / 10;
+		$pieceTo.attr('rank', $tempRank);
+		$pieceTo.text($tempRank);
+		$pieceTo.attr('player', $pieceFromPlayer);
+		if ($pieceFromPlayer == '1') {
+			nextPlayer = '2';
+		}
+		else if ($pieceFromPlayer == '2') {
+			nextPlayer = '1';
+		}
+		console.log('Next player: '+nextPlayer);
+
+		$pieceFrom.html('&nbsp;');
+		$pieceFrom.removeClass('squareSelected');
+		clicked = false;
+	}
+	// Do not remove player attribute if player move away from its own den, but I decided that player is not allowed to sit inside their own den, so this block of code doesn't matter. 
+	// if(!$pieceFrom.attr('den')) {
+	// 	$pieceFrom.removeAttr('player');
+	// }
+
+	$pieceFrom.removeAttr('rank');
+	$pieceFrom.removeAttr('player');
+	$currentPlayer = nextPlayer;
 }
 
-function possibleMoves() {
-	
+function possibleMoves(pieceFrom, row, col, river) {
+
 }
