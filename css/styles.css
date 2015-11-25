@@ -37,6 +37,7 @@ h3 {
 
 .square {
 	padding: 0px;
+	border: 1px grey solid;
 	background-color: white;
 	display: inline-block;
 	line-height: 60px;
@@ -48,7 +49,7 @@ h3 {
 }
 
 .rows .square[river] {
-	background-image: url("../images/river.gif");
+	background-color: lightblue;
 }
 
 .rows .square[den] {

@@ -364,6 +364,7 @@ var clicked = false;
 var nextPlayer, $originalClick, $pieceRank, $piecePlayer, $pieceClass;
 
 function playerMove() {
+	// debugger;
 	console.log('Current player: ' + $currentPlayer);
 	//Choosing a piece to move from
 	if (!clicked && $(this).attr('rank') && $(this).attr('player') === $currentPlayer) {
@@ -435,6 +436,27 @@ function playerMove() {
 			$currentPlayer = nextPlayer;
 			clicked = false;
 		}
+
+		//Move to empty piece except river and piece is not a rat('1')
+		else if (!$(this).attr('rank') && !$(this).attr('river')) {
+			//Determining who's turn
+			if ($piecePlayer === '1') {
+				nextPlayer = '2';
+			}
+			else if ($piecePlayer === '2') {
+				nextPlayer = '1';
+			}
+			//Setting empty tile with moving piece
+			$originalClick.html('&nbsp;');
+			$(this).attr('rank', $pieceRank);
+			$(this).attr('player',$piecePlayer);
+			$originalClick.removeClass('squareSelected');
+			console.log('Next player: '+nextPlayer);
+			$currentPlayer = nextPlayer;
+			clicked = false;
+		}
+
+
 		//if piece is a rat ('1')
 		else if (!$(this).attr('rank') && $(this).attr('river') && $pieceRank === '1') {
 			//Determining who's turn
